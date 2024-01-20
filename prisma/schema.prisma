@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model USER {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String
+
+  routine   ROUTINE[]
+  isUsing   IS_USING[]
+}
+
+model MACHINE {
+  id        Int      @id @default(autoincrement())
+  name      String
+  target    String
+
+  isUsing   IS_USING[]
+  inRoutine IN_ROUTINE[]
+}
+
+model ROUTINE {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  description String
+  user      USER     @relation(fields: [userId], references: [id])
+  userId    Int
+
+  inRoutine IN_ROUTINE[]
+}
+
+model IS_USING {
+  machine   MACHINE  @relation(fields: [machineId], references: [id])
+  machineId Int      @unique
+  user      USER     @relation(fields: [userId], references: [id])
+  userId    Int      @unique
+  createdAt DateTime @default(now())
+  
+  @@id([machineId, userId])
+}
+
+model IN_ROUTINE {
+  routine   ROUTINE  @relation(fields: [routineId], references: [id])
+  routineId Int
+  machine   MACHINE  @relation(fields: [machineId], references: [id])
+  machineId Int
+  set_time  String
+
+  @@id([routineId, machineId])
+}

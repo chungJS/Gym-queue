@@ -1,0 +1,65 @@
+-- CreateTable
+CREATE TABLE `USER` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL,
+
+    UNIQUE INDEX `USER_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `MACHINE` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `target` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `ROUTINE` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `description` VARCHAR(191) NOT NULL,
+    `userId` INTEGER NOT NULL,
+
+    UNIQUE INDEX `ROUTINE_name_key`(`name`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `IS_USING` (
+    `machineId` INTEGER NOT NULL,
+    `userId` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    UNIQUE INDEX `IS_USING_machineId_key`(`machineId`),
+    UNIQUE INDEX `IS_USING_userId_key`(`userId`),
+    PRIMARY KEY (`machineId`, `userId`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `IN_ROUTINE` (
+    `routineId` INTEGER NOT NULL,
+    `machineId` INTEGER NOT NULL,
+    `set_time` VARCHAR(191) NOT NULL,
+
+    PRIMARY KEY (`routineId`, `machineId`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `ROUTINE` ADD CONSTRAINT `ROUTINE_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `USER`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `IS_USING` ADD CONSTRAINT `IS_USING_machineId_fkey` FOREIGN KEY (`machineId`) REFERENCES `MACHINE`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `IS_USING` ADD CONSTRAINT `IS_USING_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `USER`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `IN_ROUTINE` ADD CONSTRAINT `IN_ROUTINE_routineId_fkey` FOREIGN KEY (`routineId`) REFERENCES `ROUTINE`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `IN_ROUTINE` ADD CONSTRAINT `IN_ROUTINE_machineId_fkey` FOREIGN KEY (`machineId`) REFERENCES `MACHINE`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;

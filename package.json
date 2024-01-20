@@ -1,0 +1,19 @@
+{
+  "name": "spurt_230121",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prisma": "^5.8.1"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.8.1",
+    "express": "^4.18.2"
+  }
+}
