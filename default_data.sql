@@ -13,8 +13,8 @@ INSERT INTO `ROUTINE` (`name`, `Description`, `userId`) VALUES ('chest1', 'bench
 INSERT INTO `ROUTINE` (`name`, `Description`, `userId`) VALUES ('back1', 'lat machine-yoga mat-treadmill', 1);
 INSERT INTO `ROUTINE` (`name`, `Description`, `userId`) VALUES ('leg1', 'power rack-yoga mat', 1);
 
-INSERT INTO `IS_USING` (`machineId`, `userId`) VALUES (2, 4);
-INSERT INTO `IS_USING` (`machineId`, `userId`) VALUES (3, 1);
+INSERT INTO `IS_USING` (`machineId`, `userId`) VALUES (3, 2);
+INSERT INTO `IS_USING` (`machineId`, `userId`) VALUES (1, 3);
 
 INSERT INTO `IN_ROUTINE` (`routineId`, `machineId`, `set_time`) VALUES (1, 1, '8x8');
 INSERT INTO `IN_ROUTINE` (`routineId`, `machineId`, `set_time`) VALUES (1, 4, '12x5');
