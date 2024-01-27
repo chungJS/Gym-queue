@@ -1,10 +1,11 @@
 {
-  "name": "spurt_230121",
+  "name": "gym-queue",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "/src/index/index.js",
   "scripts": {
-    "start" : "node index.js"
+    "start" : "node /src/index/index.js",
+    "test" : "node /src/test/test.js"
   },
   "keywords": [],
   "author": "",
