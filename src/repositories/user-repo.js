@@ -7,9 +7,9 @@ exports.addUser = async (pemail,ppassword,pname) => {
     try {
         const new_user = await prisma.USER.create({
             data: {
-                pemail,
-                ppassword,
-                pname
+                email: pemail,
+                password: ppassword,
+                name: pname
             },
         });
         return new_user;

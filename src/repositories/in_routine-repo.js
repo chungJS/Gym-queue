@@ -7,9 +7,9 @@ exports.addInroutine = async (proutineId, pmachineId, pset_time) => {
     try {
         const new_inroutine = await prisma.IN_ROUTINE.create({
             data: {
-                proutineId,
-                pmachineId,
-                pset_time
+                routineId: proutineId,
+                machineId: pmachineId,
+                set_time: pset_time
             },
         });
         return new_inroutine;

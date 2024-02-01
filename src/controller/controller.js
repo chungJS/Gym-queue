@@ -14,4 +14,3 @@ controller.post('/addroutine', routineService.routineAdd);
 controller.get('/listroutine', routineService.routineList);
 
 module.exports = controller;
-module.exports = express.Router();

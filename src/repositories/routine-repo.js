@@ -7,9 +7,9 @@ exports.addRoutine = async (pname, pdescription, puserId) => {
     try {
         const new_routine = await prisma.ROUTINE.create({
             data: {
-                pname,
-                pdescription,
-                puserId
+                name: pname,
+                description: pdescription,
+                userId: puserId
             },
         });
         return new_routine;
