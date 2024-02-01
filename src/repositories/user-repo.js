@@ -1,100 +1,66 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-let userInfo = 
-{
-        id: 0,
-        email: '',
-        password: '',
-        name: '',
-        error: 0,
-        error_msg: ''
-};
-
 //CRUD
 
-exprorts.addUser = async (uemail,upassword,uname) => {
+exports.addUser = async (pemail,ppassword,pname) => {
     try {
         const new_user = await prisma.USER.create({
             data: {
-                uemail,
-                upassword,
-                uname
+                pemail,
+                ppassword,
+                pname
             },
         });
-        userInfo.id = new_user.id;
-        userInfo.email = new_user.email;
-        userInfo.password = new_user.password;
-        userInfo.name = new_user.name;
-        userInfo.error = 0;
-        return userInfo;
+        return new_user;
     } catch (error) {
-        userInfo.error = 1;
-        userInfo.error_msg = error;
-        return userInfo;
+        console.error(error);
+        throw error;
     }
 };
 
-exports.findUserByEmail = async (uemail) => {
+exports.findUserByEmail = async (pemail) => {
     try {
         const query = await prisma.USER.findUnique({
             where: {
-                email: uemail,
+                email: pemail,
             },
         });
-        userInfo.id = query.id;
-        userInfo.email = query.email;
-        userInfo.password = query.password;
-        userInfo.name = query.name;
-        userInfo.error = 0;
-        return userInfo;
+        return query;
     } catch (error) {
-        userInfo.error = 1;
-        userInfo.error_msg = error;
-        return userInfo;
+        console.error(error);
+        throw error;
     }
 };
 
-exports.updateUser = async (uemail,upassword,uname) => {
+exports.updateUser = async (pemail,ppassword,pname) => {
     try {
         const query = await prisma.USER.update({
             where: {
-                email: uemail,
+                email: pemail,
             },
             data: {
-                password: upassword,
-                name: uname
+                password: ppassword,
+                name: pname
             },
         });
-        userInfo.id = query.id;
-        userInfo.email = query.email;
-        userInfo.password = query.password;
-        userInfo.name = query.name;
-        userInfo.error = 0;
-        return userInfo;
+        return query;
     } catch (error) {
-        userInfo.error = 1;
-        userInfo.error_msg = error;
-        return userInfo;
+        console.error(error);
+        throw error;
     }
 }
 
-exports.deleteUser = async (uemail) => {
+exports.deleteUser = async (pemail) => {
     try {
         const query = await prisma.USER.delete({
             where: {
-                email: uemail,
+                email: pemail,
             },
         });
-        userInfo.id = query.id;
-        userInfo.email = query.email;
-        userInfo.password = query.password;
-        userInfo.name = query.name;
-        userInfo.error = 0;
-        return userInfo;
+        return query;
     } catch (error) {
-        userInfo.error = 1;
-        userInfo.error_msg = error;
-        return userInfo;
+        console.error(error);
+        throw error;
     }
 }

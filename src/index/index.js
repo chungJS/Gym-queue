@@ -3,7 +3,7 @@ const app = express();
 
 app.use(express.json());
 
-const controller = require('./controller/controller.js');
+const controller = require('../controller/controller.js');
 app.use("/",controller);
 
 app.listen(3000, () => {
