@@ -1,8 +1,8 @@
 # Gym Queue
 
-Gym Queue는 헬스장 기구 사용 시스템의 백엔드를 NodeJS로 간단히 구현해보는 프로젝트입니다.
+Gym Queue is a backend project that implements a gym equipment usage system using Node.js.
 
-3-layered architecture의 구조로 mysql DB와 Prisma ORM을 사용하여 CRUD를 구현해보았습니다.
+It follows a 3-layered architecture, utilizing MySQL as the database and Prisma ORM to implement CRUD operations.
 
 - [Features](#Features)
 - [ERD](#ERD)
